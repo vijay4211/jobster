@@ -133,6 +133,7 @@ export default Landing;
 npm install styled-components
 ```
 
+
 ```js
 import styled from 'styled-components';
 
@@ -165,7 +166,7 @@ const Component = () => {
 #### 8) Wrappers
 
 - assets/wrappers
-- only responsible for styling
+- <Wrapper></Wrapper> only responsible for styling
 
 #### 9) Logo and Images
 
