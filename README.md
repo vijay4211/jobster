@@ -253,7 +253,7 @@ import img from '../assets/images/not-found.svg';
 import Wrapper from '../assets/wrappers/ErrorPage';
 
 return (
-  <Wrapper className='full-page'>
+  <Wrapper className='full-page'> //full-page is global class
     <div>
       <img src={img} alt='not found' />
       <h3>text</h3>
