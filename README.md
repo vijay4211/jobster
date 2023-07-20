@@ -300,10 +300,10 @@ function Register() {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //stop the Refresh page
     console.log(e.target);
   };
-  return (
+  return (  //full-page and form are global styles
     <Wrapper className='full-page'>
       <form className='form' onSubmit={onSubmit}>
         <Logo />

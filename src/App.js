@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Landing, Dashboard, Error, Register } from './pages'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Landing, Dashboard, Error, Register } from "./pages";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Route path="/*" element={<Error />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
