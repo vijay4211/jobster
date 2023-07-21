@@ -26,6 +26,7 @@ const Register = () => {
     e.preventDefault()
     // console.log(e.target)
     const {name,email,password,isMember} = values
+    console.log("values===",values);
     if(!email || !password || (!isMember && !name)){
       toast.error("Please fill out all fields");
     }
@@ -84,27 +85,6 @@ const Register = () => {
 }
 
 export default Register
-
-// Points:==========
-//copy Entire thing inside the  ...values
-// setValues({...values, isMember: !values.isMember});
-// !values.isMember is do false and true. if it is false then it will become true and if it is true then it will become false.
-
-
-
-
-
-// The line you provided is using the setValues function to update the state of a component. It is typically used in a functional component that utilizes the useState hook in React.
-
-// Let's break down the line to understand its meaning:
-
-// setValues: This is a function that is used to update the state of the component. In React, state is often managed using the useState hook, and setValues would be the function returned by useState, allowing you to update the state.
-
-// { ...values, isMember: !values.isMember }: This is an object that represents the new state that you want to set. It uses the spread operator (...) to create a shallow copy of the existing state, values. This is done to ensure that we don't directly mutate the original state object, which is a best practice in React.
-
-// isMember: !values.isMember: This part of the object is setting the isMember property to the opposite of its current value. It appears to be toggling the isMember property between true and false. The ! operator is the logical NOT operator, so if values.isMember is true, !values.isMember will be false, and vice versa.
-
-// Overall, this line is updating the state of the component, specifically changing the isMember property to its opposite value. The effect of this depends on the previous state of the isMember property. If it was true, it will be updated to false, and if it was false, it will be updated to true. It's a common pattern used for toggling boolean state values in React components.
 
 
 
