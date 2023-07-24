@@ -1,22 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import customFetch from '../../utils/axios'
+import {
+  getUserFromLocalStorage,
+  addUserToLocalStorage,
+  removeUserFromLocalStorage,
+} from '../../utils/localStorage'
 
 const initialState = {
   isLoading: false,
-  user: null,
+  user: getUserFromLocalStorage(),
 }
+
+// console.log("initialState-user======",initialState.user);
 
 export const registerUser = createAsyncThunk(
   'user/registerUser',
   async (user, thunkAPI) => {
+    // console.log("registerUser-user======",user);
     try {
       const resp = await customFetch.post('/auth/register', user)
-      // console.log("resp====",resp.data);
+      // console.log("registerUser-resp=====",resp);
       return resp.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
-      // console.log("error.response=======",error.response)
     }
   },
 )
@@ -24,9 +31,10 @@ export const registerUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (user, thunkAPI) => {
+    console.log("loginUser-user=======",user);
     try {
       const resp = await customFetch.post('/auth/login', user)
-      // console.log("resp====",resp.data);
+      // console.log("loginUser-resp====",resp);
       return resp.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -46,13 +54,13 @@ const userSlice = createSlice({
         const { user } = payload
         state.isLoading = false
         state.user = user
+        addUserToLocalStorage(user)
         toast.success(`Hello There ${user.name}`)
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false
         toast.error(payload)
       })
-
 
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true
@@ -61,6 +69,7 @@ const userSlice = createSlice({
         const { user } = payload
         state.isLoading = false
         state.user = user
+        addUserToLocalStorage(user)
         toast.success(`Welcome Back ${user.name}`)
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
