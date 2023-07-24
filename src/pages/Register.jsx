@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Logo, FormRow } from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage'
 import {toast} from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser, registerUser } from '../features/user/userSlice'
 
 const initialState = {
   name: '',
@@ -12,31 +14,34 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState)
-  // console.log("Register values====",values);
+
+  const {user, isLoading} = useSelector(store=> store.user);
+  const dispatch = useDispatch();
+
 
   const handleChange = (e) => {
-    // console.log(e.target)
     const name = e.target.name;
     const value = e.target.value;
-    // console.log(`${name}:${value}`);
     setValues({...values, [name]:value});
   }
 
+
   const onSubmit = (e) => {
     e.preventDefault()
-    // console.log(e.target)
     const {name,email,password,isMember} = values
-    console.log("values===",values);
     if(!email || !password || (!isMember && !name)){
       toast.error("Please fill out all fields");
+      return;
     }
-
+    if(isMember){
+      dispatch(loginUser({email:email, password:password})) 
+      return;
+    }
+    dispatch(registerUser({name, email, password}))
   }
 
   const toggleMember = () => {
-    //copy Entire thing inside the ...values
-    setValues({ ...values, isMember: !values.isMember }) //false or true
-    // console.log(values.isMember); //true(Login) then false(Register)
+    setValues({ ...values, isMember: !values.isMember }) 
   }
 
   return (
@@ -85,8 +90,3 @@ const Register = () => {
 }
 
 export default Register
-
-
-
-
-

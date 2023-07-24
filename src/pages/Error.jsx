@@ -18,4 +18,3 @@ export default Error
 
 
 
-// .full-page{min-height: 100vh }
