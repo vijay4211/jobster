@@ -1,21 +1,24 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.nav`
-  height: var(--nav-height);
+  /* border: 2px solid red; */
+  height: var(--nav-height); //6rem
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1);
-  .logo {
-    display: flex;
-    align-items: center;
-    width: 100px;
-  }
+
   .nav-center {
+    /* border: 2px solid blue; */
     display: flex;
     width: 90vw;
     align-items: center;
     justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    width: 100px;
   }
   .toggle-btn {
     background: transparent;
@@ -29,8 +32,10 @@ const Wrapper = styled.nav`
   background: var(--white);
   .btn-container {
     position: relative;
+    border: 4px solid red;
   }
   .btn {
+    border: 2px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,5 +85,5 @@ const Wrapper = styled.nav`
       display: block;
     }
   }
-`
+`;
 export default Wrapper
