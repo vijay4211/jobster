@@ -60,7 +60,21 @@ const AddJob = () => {
             value={jobLocation}
             handleChange={handleJobInput}
           />
-          <button type='button'></button>
+          <button
+            type="button"
+            className="btn btn-block clear-btn"
+            onClick={() => console.log('clear values')}
+          >
+            clear
+          </button>
+          <button
+            type="submit"
+            className="btn btn-block submit-btn"
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
+            submit
+          </button>
         </div>
       </form>
     </Wrapper>
