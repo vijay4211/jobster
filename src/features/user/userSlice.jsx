@@ -9,18 +9,15 @@ import {
 
 const initialState = {
   isLoading: false,
+  isSidebarOpen: false,
   user: getUserFromLocalStorage(),
 }
-
-// console.log("initialState-user======",initialState.user);
 
 export const registerUser = createAsyncThunk(
   'user/registerUser',
   async (user, thunkAPI) => {
-    // console.log("registerUser-user======",user);
     try {
       const resp = await customFetch.post('/auth/register', user)
-      // console.log("registerUser-resp=====",resp);
       return resp.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -31,10 +28,9 @@ export const registerUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (user, thunkAPI) => {
-    console.log("loginUser-user=======",user);
+    console.log('loginUser-user=======', user)
     try {
       const resp = await customFetch.post('/auth/login', user)
-      // console.log("loginUser-resp====",resp);
       return resp.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -45,6 +41,17 @@ export const loginUser = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    logoutUser: (state)=>{
+      state.user = null;
+      state.isSidebarOpen = false;
+      removeUserFromLocalStorage();
+    },
+    toggleSidebar: (state) => {
+      state.isSidebarOpen = !state.isSidebarOpen
+      console.log(state.isSidebarOpen);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
@@ -78,5 +85,5 @@ const userSlice = createSlice({
       })
   },
 })
-
+export const { toggleSidebar } = userSlice.actions
 export default userSlice.reducer
