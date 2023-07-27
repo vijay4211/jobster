@@ -3,6 +3,7 @@ import { FormRow } from '../../components'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { updateUser } from '../../features/user/userSlice'
 
 const Profile = () => {
   const { isLoading, user } = useSelector((store) => store.user)
@@ -16,11 +17,12 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const {name,email,lastName,location} = userData
+    const { name, email, lastName, location } = userData
     if (!name || !email || !lastName || !location) {
       toast.error('please fill out all fields')
       return
     }
+    dispatch(updateUser(userData))
   }
 
   const handleChange = (e) => {
@@ -59,8 +61,8 @@ const Profile = () => {
             value={userData.location}
             handleChange={handleChange}
           />
-          <button type='submit' className='btn btn-block' disabled={isLoading}>
-            {isLoading ? "Please Wait...." : "save changes"}
+          <button type="submit" className="btn btn-block" disabled={isLoading}>
+            {isLoading ? 'Please Wait....' : 'save changes'}
           </button>
         </div>
       </form>
@@ -70,4 +72,3 @@ const Profile = () => {
 
 export default Profile
 
-// loading true honga to button disable honga and loading false honga to button enable honga.
