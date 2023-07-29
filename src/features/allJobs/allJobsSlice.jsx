@@ -22,7 +22,7 @@ const initialState = {
   monthlyApplications: [],
   ...initialFiltersState,
 }
-console.log(initialState);
+// console.log(initialState);
 
 export const getAllJobs = createAsyncThunk(
   'allJobs/getJobs',

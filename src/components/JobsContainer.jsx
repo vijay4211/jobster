@@ -9,6 +9,7 @@ import { getAllJobs } from '../features/allJobs/allJobsSlice'
 
 const JobsContainer = () => {
   const { jobs, isLoading } = useSelector((store) => store.allJobs)
+  // console.log("jobs====",jobs[0].company);
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -34,8 +35,8 @@ const JobsContainer = () => {
       <h5>jobs info</h5>
       <div className="jobs">
         {jobs.map((job) => {
-          console.log(job)
-          return <Job key={job._id} {...Job} />
+          // console.log("job====",jobs)
+          return <Job key={job._id} {...job} />
         })}
       </div>
     </Wrapper>
