@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+// assets-wrappers-Job.js:=============
+
+import styled from "styled-components";
 
 const Wrapper = styled.article`
   background: var(--white);
